@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <%= csrf_meta_tags %>
+    <title>Appointment for Barber Shop</title>
+  </head>
+  <body>
+    <div id="main-container" class="container">
+      <div class="row">
+        <h3>Appointment System</h3>
+        <div class="container">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

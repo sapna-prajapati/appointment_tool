@@ -1,0 +1,31 @@
+<% if notice.present? %>
+  <div class="alert alert-success"><%= notice %></div>
+<% end %>
+ 
+<div class="row">
+  <% next_5_days.each do |date| %>
+
+    <div class='col-md-2'>
+      <p><%= date.strftime("%A-%d %B %Y") %></p>
+
+      <ul class="list-group">
+        <% @slots.each do |slot| %>
+          <li class="list-group-item text-center">
+            <% slot_time = get_slot_time(slot.start_time, slot.end_time) %>
+            <% if slot.start_time == '14' %>
+              <%= slot_time + " Lunch" %>
+            <% else %>
+              <% if appointment_availability(slot.id, date).present? %>
+                <%= slot_time + " Booked" %>
+              <% else %>
+                <%= link_to slot_time, new_client_path(slot_id: slot.id, appointment_date: date),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}  %>
+              <% end %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
